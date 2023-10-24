@@ -1,0 +1,1 @@
+web: ddtrace-run waitress-serve --host 0.0.0.0 --port=$PORT --threads=12 --call "run:create_app"

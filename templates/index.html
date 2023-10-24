@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>POST Request Example with Fetch</title>
+</head>
+<body style="text-align: center;">
+    <h1>DUMMY SERVER TEST</h1>
+    <form id="myForm">
+        <label for="input1">Username:</label>
+        <input type="text" id="input1" name="input1"><br><br>
+        <label for="input2">Name:</label>
+        <input type="text" id="input2" name="input2"><br><br>
+        <button type="button" id="submitButton">Submit</button>
+    </form>
+    <script>
+        document.getElementById("submitButton").addEventListener("click", function() {
+            const input1Value = document.getElementById("input1").value;
+            const input2Value = document.getElementById("input2").value;
+            const data = {
+                username: input1Value,
+                name: input2Value
+            };
+            fetch(`${window.location.origin}/users`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(responseData => {
+                // Handle the response from the server here
+                console.log(responseData);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        });
+    </script>
+</body>
+</html>
